@@ -8,7 +8,7 @@ module Dependence where
 -- based on blog post by Chris Smith
 -- http://cdsmith.wordpress.com/2012/04/18/why-do-monads-matter/
 
--- Example using composition of 
+-- Example using composition of
 -- (very simplistic) pretty printing functions.
 -- Each function takes a string and returns an
 -- extended string.
@@ -18,7 +18,7 @@ module Dependence where
 main = putStrLn (runPref (f "foo") cfg) -- pass in configuration at top level
          where f = left `composePref` right
                cfg = 3
-       
+
 -- left adds brackets on left
 left :: String -> Pref String
 left s = Pref (\i -> (repeatString i "< ") ++ s)
@@ -61,6 +61,6 @@ bindPref :: Pref a -> (a -> Pref b) -> Pref b
 bindPref e f = (composePref f id) e
 
 -- Prove we have implemented a monad by defining an instance of the type-class
-instance Monad Pref where
-    return = idPref
-    (>>=) = bindPref
+-- instance Monad Pref where
+--     return = idPref
+--     (>>=) = bindPref

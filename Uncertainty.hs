@@ -14,7 +14,7 @@ module Uncertainty where
 -- http://www.meetup.com/
 
 -- Non-Determinism comes from rule in Blackjack
--- that allows an Ace to be valued either as 1 
+-- that allows an Ace to be valued either as 1
 -- or 11.
 
 data Card = Ace
@@ -33,7 +33,7 @@ valueHand cs = let (P hvs) = hv cs
                in if not (null nonBust)
                   then maximum nonBust
                   else minimum hvs
-        where 
+        where
             hv [] = P [0]
             hv (c:cs) = (valueCard c) `addP` (hv cs)
 
@@ -86,6 +86,6 @@ bindP :: P a -> (a -> P b) -> P b
 bindP e f = (composeP f id) e
 
 -- Prove we have implemented a monad by defining an instance of the type-class
-instance Monad P where
-    return = idP
-    (>>=) = bindP
+-- instance Monad P where
+--     return = idP
+--     (>>=) = bindP

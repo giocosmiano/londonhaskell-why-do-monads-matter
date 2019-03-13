@@ -11,7 +11,7 @@ module Failure where
 
 -- Use division (by zero) as a function that
 -- could produce an error.
--- (divBy 2) applied to 6 equals 3. 
+-- (divBy 2) applied to 6 equals 3.
 divBy :: Integer -> Integer -> Err Integer
 divBy 0 y = Error
 divBy x y = OK (div y x)
@@ -48,6 +48,6 @@ bindErr :: Err a -> (a -> Err b) -> Err b
 bindErr e f = (composeErr f id) e
 
 -- Prove we have implemented a monad by defining an instance of the type-class
-instance Monad Err where
-    return = idErr
-    (>>=) = bindErr
+-- instance Monad Err where
+--     return = idErr
+--     (>>=) = bindErr
